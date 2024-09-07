@@ -18,33 +18,33 @@ namespace TechnologyKeeda.Repositories.Implementations
             _dbContext = dbContext;
         }
 
-        public void Edit(City city)
+        public async Task Edit(City city)
         {
             _dbContext.Cities.Update(city);
-            _dbContext.SaveChanges(); 
+            await _dbContext.SaveChangesAsync(); 
         }
 
-        public IEnumerable<City> GetAll()
+        public async Task<IEnumerable<City>> GetAll()
         {
-            var cities = _dbContext.Cities.Include(x=>x.State).ThenInclude(y=>y.Country).ToList();
+            var cities = await _dbContext.Cities.Include(x=>x.State).ThenInclude(y=>y.Country).ToListAsync();
             return cities;
         }
 
-        public City GetById(int id)
+        public async Task<City> GetById(int id)
         {
-            return _dbContext.Cities.Find(id);
+            return await _dbContext.Cities.FindAsync(id);
         }
 
-        public void RemoveData(City city)
+        public async Task RemoveData(City city)
         {
             _dbContext.Cities.Remove(city);
-            _dbContext.SaveChanges();
+           await _dbContext.SaveChangesAsync();
         }
 
-        public void Save(City city)
+        public async Task Save(City city)
         {
-            _dbContext.Cities.Add(city);
-            _dbContext.SaveChanges();   
+            await _dbContext.Cities.AddAsync(city);
+            await _dbContext.SaveChangesAsync();   
         }
     }
 }

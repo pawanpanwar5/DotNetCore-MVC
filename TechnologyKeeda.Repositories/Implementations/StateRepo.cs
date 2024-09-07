@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using TechnologyKeeda.Entities;
@@ -18,34 +19,34 @@ namespace TechnologyKeeda.Repositories.Implementations
             _dbContext = dbContext;
         }
 
-        public void Edit(State state)
+        public async Task Edit(State state)
         {
             _dbContext.States.Update(state);
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
         }
 
-        public IEnumerable<State> GetAll()
+        public async Task<IEnumerable<State>> GetAll()
         {
-            var states = _dbContext.States.Include(x=> x.Country).ToList(); 
+            var states = await _dbContext.States.Include(x=> x.Country).ToListAsync(); 
             return states;
         }
 
-        public State GetById(int id)
+        public async Task<State> GetById(int id)
         {
-            var state = _dbContext.States.Find(id);
+            var state = await _dbContext.States.FindAsync(id);
             return state;
         }
 
-        public void RemoveData(State state)
+        public async Task RemoveData(State state)
         {
             _dbContext.States.Remove(state);
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
         }
 
-        public void Save(State state)
+        public async Task Save(State state)
         {
-            _dbContext.States.Add(state);
-            _dbContext.SaveChanges();
+            await _dbContext.States.AddAsync(state);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

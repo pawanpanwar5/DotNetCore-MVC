@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,34 +18,34 @@ namespace TechnologyKeeda.Repositories.Implementations
             _dbContext = dbContext;
         }
 
-        public void Edit(Country country)
+        public async Task Edit(Country country)
         {
             _dbContext.Countries.Update(country);
-            _dbContext.SaveChanges();  
+            await _dbContext.SaveChangesAsync();  
         }
 
-        public IEnumerable<Country> GetAll()
+        public async Task<IEnumerable<Country>> GetAll()
         {
-            var countries = _dbContext.Countries.ToList();
+            var countries = await _dbContext.Countries.ToListAsync();
             return countries;
         }
 
-        public Country GetById(int id)
+        public async Task<Country> GetById(int id)
         {
-            var country = _dbContext.Countries.Find(id);
+            var country = await _dbContext.Countries.FindAsync(id);
             return country;
         }
 
-        public void RemoveData(Country country)  
+        public async Task RemoveData(Country country)  
         {
             _dbContext.Countries.Remove(country);
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
         }
 
-        public void Save(Country country)
+        public async Task Save(Country country)
         {
-            _dbContext.Countries.Add(country);
-            _dbContext.SaveChanges();
+            await _dbContext.Countries.AddAsync(country);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

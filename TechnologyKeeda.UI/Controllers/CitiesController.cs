@@ -18,9 +18,9 @@ namespace TechnologyKeeda.UI.Controllers
             _cityRepo = cityRepo;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var cities = _cityRepo.GetAll();
+            var cities = await _cityRepo.GetAll();
             var vm = new List<CityViewModel>();
             foreach( var city in cities)
             {
@@ -35,28 +35,28 @@ namespace TechnologyKeeda.UI.Controllers
             return View(vm);
         }
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            var states = _stateRepo.GetAll();
+            var states = await _stateRepo.GetAll();
             ViewBag.StateList = new SelectList(states, "Id", "Name");
             return View();
         }
         [HttpPost]
-        public IActionResult Create(CreateCityViewModel vm)
+        public async Task<IActionResult> Create(CreateCityViewModel vm)
         {
             var city = new City
             {
                 Name = vm.CityName,
                 StateId = vm.StateId
             };
-            _cityRepo.Save(city);
+            await _cityRepo.Save(city);
             return RedirectToAction("Index");
         }
         [HttpGet]
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            var city = _cityRepo.GetById(id);
-            var states = _stateRepo.GetAll();
+            var city = await _cityRepo.GetById(id);
+            var states = await _stateRepo.GetAll();
             ViewBag.StateList = new SelectList(states, "Id", "Name");
 
             var vm = new EditCityViewModel
@@ -68,7 +68,7 @@ namespace TechnologyKeeda.UI.Controllers
             return View(vm);
         }
         [HttpPost]
-        public IActionResult Edit(EditCityViewModel vm)
+        public async Task<IActionResult> Edit(EditCityViewModel vm)
         {
             var city = new City
             {
@@ -76,14 +76,14 @@ namespace TechnologyKeeda.UI.Controllers
                 Name = vm.CityName,
                 StateId = vm.StateId
             };
-            _cityRepo.Edit(city);
+            await _cityRepo.Edit(city);
             return RedirectToAction("Index");
         }
         [HttpGet]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var city = _cityRepo.GetById(id);
-            _cityRepo.RemoveData(city);
+            var city = await _cityRepo.GetById(id);
+            await _cityRepo.RemoveData(city);
             return RedirectToAction("Index");
         }
     }

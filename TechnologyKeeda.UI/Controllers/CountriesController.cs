@@ -14,10 +14,10 @@ namespace TechnologyKeeda.UI.Controllers
             _countryRepo = countryRepo;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             List<CountryViewModel> countryVm = new List<CountryViewModel>();
-            var countries = _countryRepo.GetAll();
+            var countries = await _countryRepo.GetAll();
             foreach(var country in countries)
             {
                 countryVm.Add(new CountryViewModel { Id=country.Id, Name = country.Name });
@@ -31,17 +31,17 @@ namespace TechnologyKeeda.UI.Controllers
             return View(country);
         }
         [HttpPost]
-        public IActionResult Create(CreateCountryViewModel countryVm)
+        public async Task<IActionResult> Create(CreateCountryViewModel countryVm)
         {
             var country = new Country { Name = countryVm.Name }; 
-            _countryRepo.Save(country);
+            await _countryRepo.Save(country);
             return RedirectToAction("Index");
         }
         [HttpGet]
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
             
-            var country = _countryRepo.GetById(id);
+            var country = await _countryRepo.GetById(id);
             CountryViewModel countryVm = new CountryViewModel 
             { 
                 Id =  country.Id, Name = country.Name
@@ -49,21 +49,21 @@ namespace TechnologyKeeda.UI.Controllers
             return View(countryVm);
         }
         [HttpPost]
-        public IActionResult Edit(CountryViewModel countryVm)
+        public async Task<IActionResult> Edit(CountryViewModel countryVm)
         {
             var country = new Country
             {
                 Id = countryVm.Id,
                 Name = countryVm.Name
             };
-           _countryRepo.Edit(country);
+           await _countryRepo.Edit(country);
             return RedirectToAction("Index");
         }
         [HttpGet]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var country = _countryRepo.GetById(id);
-            _countryRepo.RemoveData(country);
+            var country = await _countryRepo.GetById(id);
+            await _countryRepo.RemoveData(country);
             return RedirectToAction("Index");
         }
     }
