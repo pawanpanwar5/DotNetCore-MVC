@@ -16,13 +16,17 @@ namespace TechnologyKeeda.UI.Controllers
 
         public async Task<IActionResult> Index()
         {
-            List<CountryViewModel> countryVm = new List<CountryViewModel>();
-            var countries = await _countryRepo.GetAll();
-            foreach(var country in countries)
+            if(HttpContext.Session.GetInt32("userId") != null)
             {
-                countryVm.Add(new CountryViewModel { Id=country.Id, Name = country.Name });
+                List<CountryViewModel> countryVm = new List<CountryViewModel>();
+                var countries = await _countryRepo.GetAll();
+                foreach(var country in countries)
+                {
+                    countryVm.Add(new CountryViewModel { Id=country.Id, Name = country.Name });
+                }
+                return View(countryVm);
             }
-            return View(countryVm);
+            return RedirectToAction("Login", "Auth");
         }
         [HttpGet]
         public IActionResult Create()
