@@ -19,7 +19,12 @@ namespace TechnologyKeeda.UI
             builder.Services.AddScoped<ICountryRepo, CountryRepo>();
             builder.Services.AddScoped<IStateRepo, StateRepo>();
             builder.Services.AddScoped<ICityRepo, CityRepo>();
-            
+
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(10);
+                options.Cookie.HttpOnly = true;
+            });
             
             var app = builder.Build();
 
@@ -33,6 +38,8 @@ namespace TechnologyKeeda.UI
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseSession();
 
             app.UseRouting();
 
