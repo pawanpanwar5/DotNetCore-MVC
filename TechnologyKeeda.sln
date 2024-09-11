@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechnologyKeeda.Repositorie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechnologyKeeda.UI", "TechnologyKeeda.UI\TechnologyKeeda.UI.csproj", "{E3C305FE-11CE-49F4-9E35-ED1DDC7ACDDC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcertBooking.Entities", "ConcertBooking.Entities\ConcertBooking.Entities.csproj", "{0BD56104-9A7E-4D13-B27E-835BBEA7375D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcertBooking.Repositories", "ConcertBooking.Repositories\ConcertBooking.Repositories.csproj", "{BA1980BE-0164-48F9-A1FA-F5292CA24D9B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{E3C305FE-11CE-49F4-9E35-ED1DDC7ACDDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3C305FE-11CE-49F4-9E35-ED1DDC7ACDDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3C305FE-11CE-49F4-9E35-ED1DDC7ACDDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BD56104-9A7E-4D13-B27E-835BBEA7375D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BD56104-9A7E-4D13-B27E-835BBEA7375D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BD56104-9A7E-4D13-B27E-835BBEA7375D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BD56104-9A7E-4D13-B27E-835BBEA7375D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA1980BE-0164-48F9-A1FA-F5292CA24D9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA1980BE-0164-48F9-A1FA-F5292CA24D9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA1980BE-0164-48F9-A1FA-F5292CA24D9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA1980BE-0164-48F9-A1FA-F5292CA24D9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
