@@ -21,7 +21,7 @@ namespace ConcertBooking.Repositories.Implementations
 
         public async Task Edit(Artist artist)
         {
-            _context.Artists.Add(artist);
+            _context.Artists.Update(artist);
             await _context.SaveChangesAsync();
         }
 

@@ -21,13 +21,13 @@ namespace ConcertBooking.Repositories.Implementations
 
         public async Task Edit(Concert concert)
         {
-            _context.Concerts.Add(concert);
+            _context.Concerts.Update(concert);
             await _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Concert>> GetAll()
         {
-            return await _context.Concerts.ToListAsync();
+            return await _context.Concerts.Include(x=>x.Artist).Include(y=>y.Venue).ToListAsync();
         }
 
         public async Task<Concert> GetById(int id)
