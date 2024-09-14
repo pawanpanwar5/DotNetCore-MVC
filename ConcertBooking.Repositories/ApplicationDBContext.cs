@@ -1,4 +1,5 @@
 ﻿using ConcertBooking.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace TechnologyKeeda.ConcertBooking.Repositories
 {
-    public class ApplicationDBContext: DbContext
+    public class ApplicationDBContext: IdentityDbContext<ApplicationUser>     //DbContext
     {
         public ApplicationDBContext(DbContextOptions<ApplicationDBContext> options):base(options)
         {
