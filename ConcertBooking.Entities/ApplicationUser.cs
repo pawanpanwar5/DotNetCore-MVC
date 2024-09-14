@@ -10,13 +10,14 @@ using System.Threading.Tasks;
 // Authentication:
 // Register: IdentityUser class- Id(Guid), UserName, Password, email, phone
 // SignInManager - check User SignIn, signin
-
+// UserManager: store user data in db, get userinfo from db, add role to user
 
 namespace ConcertBooking.Entities
 {
     public class ApplicationUser: IdentityUser
     {
         public string? FirstName { get; set; }
-        //public string LastName { get; set; }
+        public string? Address { get; set; }
+        public string? Pincode { get; set; }
     }
 }
