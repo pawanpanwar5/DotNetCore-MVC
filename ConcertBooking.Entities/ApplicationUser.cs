@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 // Register: IdentityUser class- Id(Guid), UserName, Password, email, phone
 // SignInManager - check User SignIn, signin
 // UserManager: store user data in db, get userinfo from db, add role to user
+// IdentityRole: Id, name
+
 
 namespace ConcertBooking.Entities
 {
