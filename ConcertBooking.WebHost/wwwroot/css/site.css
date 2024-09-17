@@ -27,3 +27,22 @@ body {
 .colorBlack h2 {
     color: white;
 }
+
+@media print{
+    /*body *{
+        visibility: hidden;
+        
+    }*/
+    .print-section, print-section *{
+        visibility: visible;
+        position: relative;
+    }
+    .card-footer{
+        display:none;
+    }
+    .print-section{
+        position: relative;
+        left: 0px;
+        top: 0px;
+    }
+}

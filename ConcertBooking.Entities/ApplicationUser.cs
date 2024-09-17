@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 // SignInManager - check User SignIn, signin
 // UserManager: store user data in db, get userinfo from db, add role to user
 // IdentityRole: Id, name
+// claim: piece of information about user
+// ClaimsIdentity: list of claims
 
 
 namespace ConcertBooking.Entities

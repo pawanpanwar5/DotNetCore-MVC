@@ -1,0 +1,70 @@
+﻿@using ConcertBooking.WebHost.ViewModels.TicketsViewModels;
+@model IEnumerable<BookingViewModel>
+@{
+    ViewData["Title"] = "MyTickets";
+}
+
+@if(Model == null || !Model.Any()){
+    <div class="alert alert-warning">
+        You have no tickets booked.
+    </div>
+}
+else
+{
+    foreach(var booking in Model){
+        <div class="card mb-4" id="booking-@booking.BookingId">
+            <div class="card-header">
+                Booking ID: @booking.BookingId - Date: @booking.BookingDate.ToString("dd/MM/yyyy")
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">
+                    Concert: @booking.ConcertName
+                </h5>
+                <ul class="list-group">
+                    @foreach(var ticket in booking.Tickets)
+                    {
+                        <li class="list-group-item">Seat Number: @ticket.SeatNumber</li>
+                    }
+                </ul>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-primary" onclick="printTicket(@booking.BookingId)">
+                    Print Ticket
+                </button>
+            </div>
+        </div>
+    }
+}
+
+@section scripts{
+    <script>
+        function printTicket(bookingId) {
+            var element = document.getElementById('booking-' + bookingId);
+            element.classList.add('print-section');
+            var cards = document.querySelectorAll('.card');
+
+            // Store the card that has the 'print-section' class
+            var printSection = document.querySelector('.print-section');
+
+            // Loop through all card elements
+            cards.forEach(function (card) {
+                if (card !== printSection) {
+                    // Hide the card by setting its display style to 'none'
+                    card.style.display = 'none';
+                }
+            });
+
+            // Print the document
+            window.print();
+            element.classList.remove('print-section');
+            // Use setTimeout to ensure the print dialog has appeared before restoring visibility
+            setTimeout(function () {
+                // Show all cards again by removing the 'display: none' style
+                cards.forEach(function (card) {
+                    card.style.display = '';
+                });
+            }, 500); // Adjust delay as necessary
+            //element.classList.remove('print-section');
+        }
+    </script>
+}
